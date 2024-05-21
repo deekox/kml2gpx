@@ -1,6 +1,6 @@
-from genericpath import isfile
 import os
 import sys
+from zipfile import ZipFile
 
 usageString=f"usage: {sys.argv[0]} <kml/kmz file> [output_file_name]"
 
@@ -23,4 +23,12 @@ elif sys.argv[2].endswith(".gpx"):
 else:
     outputFilePath = sys.argv[2] + ".gpx"
 
-print(f"input {inputFilePath}\noutput: {outputFilePath}")
+inputFileExtension = os.path.basename(os.path.splitext(os.path.basename(inputFilePath))[1])
+
+if inputFileExtension == ".kmz":
+    ZipFile(inputFilePath, 'r').extract('doc.kml')
+                         
+
+#print(f"input {inputFilePath}\noutput: {outputFilePath}\ninputFileExtension: {inputFileExtension}")
+
+
