@@ -163,3 +163,4 @@ cython_debug/
 *.kmz
 *.kml
 *.gpx
+*.zip
